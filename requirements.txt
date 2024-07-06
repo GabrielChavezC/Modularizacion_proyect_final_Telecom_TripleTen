@@ -1,3 +1,4 @@
  pandas
  scikit-learn 
  matplotlib
+#  TODO Usar versiones específicas con pip freeze
