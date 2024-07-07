@@ -28,3 +28,5 @@ Primer archivo a ejecutar dentro de la carpeta
 
 - /pipeline
   - p01_pipeline_entrenamiento.py
+
+En este archivo ejecuta las diferentes funciones de como se va procesando los datos hasta tener un modelo entrenado.
