@@ -1,4 +1,5 @@
 pandas==2.2.1
 scikit-learn==1.4.2 
 matplotlib==3.8.3
+streamlit==1.36.0
 #  TODO Usar versiones específicas con pip freeze

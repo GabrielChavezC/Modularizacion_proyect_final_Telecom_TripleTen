@@ -27,3 +27,7 @@ os.system(f"python{extension_binarios} preprocessing/a02_preproceso_split.py")
 # Modelo ---------------------------------------- 
 
 os.system(f"python{extension_binarios} models/b01_creacion_modelos.py")
+
+
+# Container_de_la_app ---------------------------------------- 
+os.system(f"streamlit run ./sandbox1/app.py")
