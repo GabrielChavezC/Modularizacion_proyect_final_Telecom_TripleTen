@@ -6,13 +6,16 @@ sys.path.append(os.getcwd())
 
 #Configuracion
 st.set_page_config(layout='wide')
-st.title("Telecom")
+st.header("TELECOM",divider='rainbow')
 
+st.sidebar.image('test/Designer.jpeg')
 st.sidebar.title('Prediccion')
 
 
 
 col1, col2,col3 = st.columns(3)
+# Inicializa los valores en session_state si no están presentes
+
 
 with col1:
     type = st.radio(
@@ -111,12 +114,12 @@ with col3:
 col1mcharges, col2tcharges = st.columns(2)
 
 with col1mcharges:
-     monthlycharges=st.text_input("Cargos Mensuales","Ingresa cargos mensuales")
+     monthlycharges=st.text_input("Cargos Mensuales",placeholder="Ingresa cargos mensuales")
+     nom_cliente=st.text_input("Cliente",placeholder="Nombre Cliente")
      
 with col2tcharges:
-     totalcharges=st.text_input("Cargos Totales","Ingresa cargos Totales")
+     totalcharges=st.text_input("Cargos Totales",placeholder="Ingresa cargos Totales")
      
-
 
 if st.sidebar.button('Prediccion'):
     # Convertir las entradas a un formato adecuado para el modelo
@@ -146,7 +149,7 @@ if st.sidebar.button('Prediccion'):
         st.dataframe(df_principal)
       
        # Preprocesamiento (codificación de variables categóricas)
-        df['Type'] = df['Type'].map({'Month-to-month': 0,'One year': 1, 'Two Year': 2})
+        df['Type'] = df['Type'].map({'Month-to-month': 0,'One year': 1, 'Two year': 2})
         df['PaperlessBilling'] = df['PaperlessBilling'].map({'Si': 1, 'No': 0})
         df['PaymentMethod'] = df['PaymentMethod'].map({'Credit Card': 0,'Bank Transfer':1, 'Electronick check': 2,'Mailed check':3})
         df['gender'] = df['gender'].map({'femenino': 0, 'masculino': 1})
@@ -162,15 +165,8 @@ if st.sidebar.button('Prediccion'):
         df['StreamingMovies'] = df['StreamingMovies'].map({'Si': 1, 'No': 0})
         df['MultipleLines'] = df['MultipleLines'].map({'Si': 1, 'No': 0})
 
-
-     
-       
-
-
-
-
         try:
-            st.dataframe(df)
+            
             # Cargar el modelo
             model = joblib.load(f"./modeling_output/model_fit/b01_model_rf.joblib")
 
@@ -180,10 +176,11 @@ if st.sidebar.button('Prediccion'):
             # Mostrar el resultado
             st.subheader('Resultado de la Predicción')
             if prediction == 1:
-                st.write('El cliente podría cancelar el plan.')
+               st.write(f'El cliente {nom_cliente} podría cancelar el plan.\nSe sugiere recomendar un descuento.')
             else:
-                st.write('El cliente seguirá con la empresa.')
+                st.write(f'El cliente {nom_cliente} seguirá con la empresa.')
         except FileNotFoundError:
             st.error("El archivo del modelo no se encontró. Verifica la ruta y el nombre del archivo.")
         except Exception as e:
             st.error(f"Ocurrió un error: {e}")
+
