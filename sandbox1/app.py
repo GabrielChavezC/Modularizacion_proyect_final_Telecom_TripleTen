@@ -168,7 +168,7 @@ if st.sidebar.button('Prediccion'):
         try:
             
             # Cargar el modelo
-            model = joblib.load(f"./modeling_output/model_fit/b01_model_rf.joblib")
+            model = joblib.load(f"/modeling_output/model_fit/b01_model_rf.joblib")
 
             # Realizar la predicción
             prediction = model.predict(df)[0]
