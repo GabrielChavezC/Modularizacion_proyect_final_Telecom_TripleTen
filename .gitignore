@@ -305,4 +305,6 @@ geckodriver.log
 *.txt
 !requirements.txt
 
-*.joblib
+
+
+
